@@ -2,35 +2,74 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-		
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
 <ui:composition template="_template.xhtml">
+
 	<ui:define name="titulo">
 			Novo Usuario
-		</ui:define>
+	</ui:define>
+	
 	<ui:define name="conteudo">
 		<h:form>
+		
 			<fieldset>
 				<legend>Dados do Usuario</legend>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" for="nome" />
 					<h:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
-					
+
 					<h:outputLabel value="Email:" for="email" />
 					<h:inputText id="email" value="#{usuarioBean.usuario.email}" />
-					
+
 					<h:outputLabel value="Senha:" for="senha" />
 					<h:inputText id="senha" value="#{usuarioBean.usuario.senha}" />
-
+<!-- 
 					<h:outputLabel value="Grupo:" for="grupo" />
 					<h:inputText id="grupo" value="#{usuarioBean.usuario.grupo}" />
 
-
+-->
 					<h:commandButton value="Gravar" action="#{usuarioBean.gravar}" />
 				</h:panelGrid>
 			</fieldset>
+
+			<fieldset legend="Dados do Grupo">
+				<p:outputLabel value="Selecione " for="grupo" />
+				<p:commandLink value="ou cadastre novo grupo"
+					action="grupo?faces-redirect=true" immediate="true" />
+				<br/>
+  
+				<h:selectOneMenu value="#{usuarioBean.id_grupo}">
+
+					<f:selectItems value="#{usuarioBean.grupos}" var="grupo"
+						itemLabel="#{grupo.nome}" itemValue="#{grupo.id_grupo}" />
+
+						
+				</h:selectOneMenu>
+
+				<br />
+				<br />
+<!--  
+				<p:commandButton value="Gravar Autor"
+					action="#{livroBean.gravarAutor}"
+					process="@this autor" update="tabelaAutores" />
+
+
+
+				<p:dataTable value="#{livroBean.autoresDoLivro}" var="autor"
+					id="tabelaAutores" emptyMessage="Nenhum autor associado">
+					<p:column>
+						<h:outputText value="#{autor.nome}" />
+					</p:column>
+				</p:dataTable>
+-->
+			</fieldset>
+
 		</h:form>
 	</ui:define>
+	
 </ui:composition>
 
 </html>

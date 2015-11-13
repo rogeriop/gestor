@@ -17,19 +17,18 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
+	@ManyToOne
+	private Grupo grupo;
 
+	public Usuario() {
+	}
+	
 	public Usuario(String nome, String email, String senha, Grupo grupo) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.grupo = grupo;
 	}
-
-	public Usuario() {
-	}
-
-	@ManyToOne
-	private Grupo grupo;
 
 	public Long getId_usuario() {
 		return id_usuario;

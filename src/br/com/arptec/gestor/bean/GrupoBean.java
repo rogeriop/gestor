@@ -8,7 +8,7 @@ import br.com.arptec.gestor.modelo.Grupo;
 @ManagedBean
 public class GrupoBean {
 	private Grupo grupo = new Grupo();
-
+	
 	public Grupo getGrupo() {
 		return grupo;
 	}
