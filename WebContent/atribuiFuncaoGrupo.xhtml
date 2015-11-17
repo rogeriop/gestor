@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -8,7 +8,7 @@
 <ui:composition template="_template.xhtml">
 
 	<ui:define name="titulo">
-			Novo Usuario
+			Atribui Funções a Grupo
 	</ui:define>
 	
 	<ui:define name="conteudo">
@@ -17,18 +17,10 @@
 			<fieldset>
 				<legend>Dados do Usuario</legend>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Nome:" for="nome" />
-					<h:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
-
-					<h:outputLabel value="Email:" for="email" />
-					<h:inputText id="email" value="#{usuarioBean.usuario.email}" />
-
-					<h:outputLabel value="Senha:" for="senha" />
-					<h:inputText id="senha" value="#{usuarioBean.usuario.senha}" />
 
 					<h:outputLabel value="Selecione Grupo " for="grupo1" />
-					<h:selectOneMenu value="#{usuarioBean.id_grupo}" id="grupo1">
-						<f:selectItems value="#{usuarioBean.grupos}" var="grupo"
+					<h:selectOneMenu value="#{atribuiFuncaoGrupoBean.id_grupo}" id="grupo">
+						<f:selectItems value="#{atribuiFuncaoGrupoBean.grupos}" var="grupo"
 							itemLabel="#{grupo.nome}" itemValue="#{grupo.id_grupo}" />
 					</h:selectOneMenu>
 					
@@ -36,9 +28,15 @@
 						action="grupo?faces-redirect=true" immediate="true" />
 					<br/>
 
+					<h:outputLabel value="Selecione Função " for="funcao" />
+					<h:selectOneMenu value="#{atribuiFuncaoGrupoBean.id_funcao}" id="funcao">
+						<f:selectItems value="#{atribuiFuncaoGrupoBean.funcoes}" var="funcao"
+							itemLabel="#{funcao.nome}" itemValue="#{funcao.id_funcao}" />
+					</h:selectOneMenu>
+
 					<br />
 
-					<h:commandButton value="Gravar Usuário" action="#{usuarioBean.gravar}" />
+					<h:commandButton value="Gravar" action="#{atribuiFuncaoGrupoBean.gravar}" />
 				</h:panelGrid>
 			</fieldset>
 
@@ -46,5 +44,8 @@
 	</ui:define>
 	
 </ui:composition>
+
+
+
 
 </html>

@@ -1,6 +1,5 @@
 package br.com.arptec.gestor.bean;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class TemaBean implements Serializable {
+public class TemaBean  {
 	private String tema = "aristo";
 
 	public String getTema() {

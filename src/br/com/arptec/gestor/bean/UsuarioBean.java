@@ -1,6 +1,5 @@
 package br.com.arptec.gestor.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -10,9 +9,8 @@ import br.com.arptec.gestor.modelo.Grupo;
 import br.com.arptec.gestor.modelo.Usuario;
 
 @ManagedBean
-public class UsuarioBean implements Serializable{
+public class UsuarioBean {
 
-	private static final long serialVersionUID = 1L;
 	private Usuario usuario = new Usuario();
 	private Long id_grupo;
 
@@ -22,12 +20,14 @@ public class UsuarioBean implements Serializable{
 
 	public void setId_grupo(Long id_grupo) {
 		this.id_grupo = id_grupo;
+		Grupo grupo = new DAO<Grupo>(Grupo.class).buscaPorId(this.id_grupo);
+		this.usuario.setGrupo(grupo);
+		System.out.println("Escrito por: " + grupo.getNome());
 	}
 
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
 	
 	public List<Grupo> getGrupos() {
 		return new DAO<Grupo>(Grupo.class).listaTodos();
