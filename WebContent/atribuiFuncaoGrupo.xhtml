@@ -15,22 +15,18 @@
 		<h:form>
 			<h:messages id="messages"/>
 			<fieldset>
-				<legend>Dados do Usuario</legend>
+				<legend>Seleção</legend>
 				<h:panelGrid columns="2">
 
-					<h:outputLabel value="Selecione Grupo " for="grupo1" />
-					<h:selectOneMenu value="#{atribuiFuncaoGrupoBean.id_grupo}" id="grupo">
-						<f:selectItems value="#{atribuiFuncaoGrupoBean.grupos}" var="grupo"
+					<h:outputLabel value="Selecione Grupo " for="grupo" />
+					<h:selectOneMenu value="#{grupoBean.id_grupo}" id="grupo">
+						<f:selectItems value="#{grupoBean.grupos}" var="grupo"
 							itemLabel="#{grupo.nome}" itemValue="#{grupo.id_grupo}" />
 					</h:selectOneMenu>
-					
-					<h:commandLink value="ou cadastre novo grupo"
-						action="grupo?faces-redirect=true" immediate="true" />
-					<br/>
 
 					<h:outputLabel value="Selecione Função " for="funcao" />
-					<h:selectOneMenu value="#{atribuiFuncaoGrupoBean.id_funcao}" id="funcao">
-						<f:selectItems value="#{atribuiFuncaoGrupoBean.funcoes}" var="funcao"
+					<h:selectOneMenu value="#{funcaoBean.id_funcao}" id="funcao">
+						<f:selectItems value="#{funcaoBean.funcoes}" var="funcao"
 							itemLabel="#{funcao.nome}" itemValue="#{funcao.id_funcao}" />
 					</h:selectOneMenu>
 
@@ -44,8 +40,5 @@
 	</ui:define>
 	
 </ui:composition>
-
-
-
 
 </html>

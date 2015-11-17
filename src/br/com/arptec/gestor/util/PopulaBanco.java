@@ -62,8 +62,6 @@ public class PopulaBanco {
 		List<Funcao> funcoesTeste = Arrays.asList(funcao1, funcao2);
 		teste.setFuncoes(funcoesTeste);
 		manager.persist(teste);
-		
-		
 
 		manager.getTransaction().commit();
 
