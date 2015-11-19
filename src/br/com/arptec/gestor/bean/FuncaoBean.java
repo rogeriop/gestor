@@ -3,11 +3,13 @@ package br.com.arptec.gestor.bean;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import br.com.arptec.gestor.dao.DAO;
 import br.com.arptec.gestor.modelo.Funcao;
 
 @ManagedBean
+@SessionScoped
 public class FuncaoBean {
 	private Funcao funcao = new Funcao();
 	private Long id_funcao;

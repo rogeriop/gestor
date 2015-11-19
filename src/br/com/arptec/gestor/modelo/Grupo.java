@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,12 +25,16 @@ public class Grupo {
 	@OneToMany(mappedBy="grupo")
 	private List<Usuario> usuarios;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinTable(
 			name="grupo_funcao",
 			joinColumns = @JoinColumn(name="id_grupo"), inverseJoinColumns = @JoinColumn(name = "id_funcao"))
 	private List<Funcao> funcoes;
 
+
+	public Grupo() {
+		super();
+	}
 
 	public void setId_grupo(Long id_grupo) {
 		this.id_grupo = id_grupo;

@@ -7,9 +7,13 @@ cd workspaceEE\gestor\bco
 java -cp ..\WebContent\WEB-INF\lib\hsqldb.jar org.hsqldb.util.DatabaseManager
 
 *LIMPA TABELAS
-DELETE FROM livro;
-DELETE FROM autor;
+DELETE FROM usuario;
+DELETE FROM grupo_funcao;
+DELETE FROM grupo;
+DELETE FROM FUNCAO;
 
 *DROPA TABELAS
-DROP TABLE livro;
-DROP TABLE autor;
+DROP TABLE grupo_funcao;
+DROP TABLE usuario;
+DROP TABLE funcao;
+DROP TABLE grupo;

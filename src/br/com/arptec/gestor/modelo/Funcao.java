@@ -13,6 +13,9 @@ public class Funcao {
 	private Long id_funcao;
 	private String nome;
 
+	public Funcao() {
+	}
+
 	public Long getId_funcao() {
 		return id_funcao;
 	}
@@ -20,6 +23,7 @@ public class Funcao {
 	public void setId_funcao(Long id_funcao) {
 		this.id_funcao = id_funcao;
 	}
+
 
 	public String getNome() {
 		return nome;
