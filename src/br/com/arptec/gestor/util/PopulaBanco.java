@@ -55,8 +55,14 @@ public class PopulaBanco {
 		manager.persist(usuario4);
 		
 		// Atribui Funcão a Grupo
-		List<Funcao> funcoesAdministrador = Arrays.asList(funcao1, funcao2, funcao3, funcao4);
-		administrador.setFuncoes(funcoesAdministrador);
+//		List<Funcao> funcoesAdministrador = Arrays.asList(funcao1, funcao2, funcao3, funcao4);
+	
+		administrador.adicionaFuncoes(funcao1);
+		administrador.adicionaFuncoes(funcao2);
+		administrador.adicionaFuncoes(funcao3);
+		administrador.adicionaFuncoes(funcao4);
+		
+//		administrador.setFuncoes(funcoesAdministrador);
 		manager.persist(administrador);
 		
 		List<Funcao> funcoesTeste = Arrays.asList(funcao1, funcao2);

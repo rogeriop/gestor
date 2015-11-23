@@ -22,13 +22,14 @@
 					</h:selectOneMenu>
 
 					<h:outputLabel value="Função " for="funcao" />
-
 					<h:selectOneMenu value="#{funcaoBean.id_funcao}" id="funcao">
 						<f:selectItems value="#{funcaoBean.funcoes}" var="funcao"
 							itemLabel="#{funcao.nome}" itemValue="#{funcao.id_funcao}" />
 					</h:selectOneMenu>
+					
+					<h:commandButton value="Adiciona Função" action="#{grupoBean.adicionaFuncoes}"/>
 					<br />
-					<h:dataTable value="#{grupoBean.funcoesDoGrupo}" var="funcao1">
+					<h:dataTable value="#{grupoBean.funcoesDoGrupo}" var="funcao1" id="tabelaFuncoes">
 						<h:column>
 							<h:outputText value="#{funcao1.nome}"/>
 						</h:column>

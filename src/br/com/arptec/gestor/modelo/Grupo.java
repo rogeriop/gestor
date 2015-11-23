@@ -1,5 +1,6 @@
 package br.com.arptec.gestor.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+// cascade = { CascadeType.PERSIST, CascadeType.MERGE },
 
 @Entity
 @Table(name="grupo")
@@ -25,11 +26,11 @@ public class Grupo {
 	@OneToMany(mappedBy="grupo")
 	private List<Usuario> usuarios;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@ManyToMany( fetch = FetchType.EAGER)
 	@JoinTable(
 			name="grupo_funcao",
 			joinColumns = @JoinColumn(name="id_grupo"), inverseJoinColumns = @JoinColumn(name = "id_funcao"))
-	private List<Funcao> funcoes;
+	private List<Funcao> funcoes = new ArrayList<Funcao>();
 
 
 	public Grupo() {
@@ -67,6 +68,10 @@ public class Grupo {
 	public void setFuncoes(List<Funcao> funcoes) {
 		this.funcoes = funcoes;
 		
+	}
+	
+	public void adicionaFuncoes(Funcao funcao) {
+		this.funcoes.add(funcao);
 	}
 	
 }

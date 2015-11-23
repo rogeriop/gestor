@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="_template.xhtml">
@@ -15,7 +16,23 @@
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" for="nome" />
   					<h:inputText id="nome" value="#{grupoBean.grupo.nome}" />
+
+					<h:outputLabel value="Função " for="funcao" />
+					<h:selectOneMenu value="#{grupoBean.id_funcao}" id="funcao">
+						<f:selectItems value="#{funcaoBean.funcoes}" var="funcao"
+							itemLabel="#{funcao.nome}" itemValue="#{funcao.id_funcao}" />
+					</h:selectOneMenu>
+
+					<h:commandButton value="Adiciona Função" action="#{grupoBean.adicionaFuncao}">
+											<f:ajax execute="funcao" render="funcoesGrupo" />
 					
+					</h:commandButton>
+					<h:dataTable value="#{grupoBean.funcoesDoGrupo}" var="funcao" id="funcoesGrupo">
+						<h:column>
+							<h:outputText value="#{funcao.nome}"/>
+						</h:column>
+					
+					</h:dataTable>
 					<h:commandButton value="Gravar" action="#{grupoBean.gravar}" />
 				</h:panelGrid>
 			</fieldset>
