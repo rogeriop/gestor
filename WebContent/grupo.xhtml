@@ -15,26 +15,47 @@
 				<legend>Dados do Grupo</legend>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" for="nome" />
-  					<h:inputText id="nome" value="#{grupoBean.grupo.nome}" />
+					<h:inputText id="nome" value="#{grupoBean.grupo.nome}" />
 
-					<h:outputLabel value="Função " for="funcao" />
+					<h:outputLabel value="Escolha as Funções: " for="funcao" />
 					<h:selectOneMenu value="#{grupoBean.id_funcao}" id="funcao">
 						<f:selectItems value="#{funcaoBean.funcoes}" var="funcao"
 							itemLabel="#{funcao.nome}" itemValue="#{funcao.id_funcao}" />
 					</h:selectOneMenu>
 
-					<h:commandButton value="Adiciona Função" action="#{grupoBean.adicionaFuncao}">
-											<f:ajax execute="funcao" render="funcoesGrupo" />
-					
+					<h:commandButton value="Adiciona Função"
+						action="#{grupoBean.adicionaFuncao}">
+						<f:ajax execute="funcao" render="funcoesGrupo" />
+
 					</h:commandButton>
-					<h:dataTable value="#{grupoBean.funcoesDoGrupo}" var="funcao" id="funcoesGrupo">
+					<h:dataTable value="#{grupoBean.funcoesDoGrupo}" var="funcao"
+						id="funcoesGrupo">
 						<h:column>
-							<h:outputText value="#{funcao.nome}"/>
+							<h:outputText value="#{funcao.nome}" />
 						</h:column>
-					
+
 					</h:dataTable>
-					<h:commandButton value="Gravar" action="#{grupoBean.gravar}" />
+					<h:commandButton value="Gravar Grupo" action="#{grupoBean.gravar}" />
 				</h:panelGrid>
+			</fieldset>
+			<fieldset>
+				<legend>Grupos Cadastrados</legend>
+				<h:dataTable value="#{grupoBean.grupos}" var="grupo"
+					id="todosOsGrupos">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputText value="#{grupo.nome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Ações</f:facet>
+						<h:commandButton value="Editar">
+							<f:setPropertyActionListener target="#{grupoBean.grupoTabela}"
+								value="#{grupo}" />
+						</h:commandButton>
+
+						<h:commandButton value="Excluir" />
+					</h:column>
+				</h:dataTable>
 			</fieldset>
 		</h:form>
 	</ui:define>

@@ -16,7 +16,11 @@ public class GrupoBean {
 	private Grupo grupo = new Grupo();
 	private Long id_grupo;
 	private Long id_funcao;
-	
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
 	public void setId_funcao(Long id_funcao) {
 		this.id_funcao = id_funcao;
 	}
@@ -32,14 +36,14 @@ public class GrupoBean {
 	public Grupo getGrupo() {
 		return grupo;
 	}
-	
+
 	public void adicionaFuncao() {
 		System.out.println("id_funcao " + id_funcao);
 		Funcao funcao = new DAO<Funcao>(Funcao.class).buscaPorId(this.id_funcao);
 		this.grupo.adicionaFuncoes(funcao);
-		
+
 	}
-	
+
 	public Long getId_funcao() {
 		return id_funcao;
 	}
@@ -51,12 +55,18 @@ public class GrupoBean {
 	public List<Funcao> getFuncoesDoGrupo() {
 		return this.grupo.getFuncoes();
 	}
-	
 
 	public void gravar() {
 		System.out.println("Gravando grupo " + this.grupo.getNome());
-		new DAO<Grupo>(Grupo.class).adiciona(this.grupo);
+		if (this.grupo.getId_grupo() == null || this.grupo.getId_grupo() == 0) {
+			new DAO<Grupo>(Grupo.class).adiciona(this.grupo);
+		} else {
+			new DAO<Grupo>(Grupo.class).atualiza(this.grupo);
+		}
 		this.grupo = new Grupo();
 	}
 
+	public void setGrupoTabela(Grupo grupo) {
+		this.grupo = new DAO<Grupo>(Grupo.class).buscaPorId(grupo.getId_grupo());
+	}
 }
