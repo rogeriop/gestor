@@ -74,4 +74,8 @@ public class Grupo {
 		this.funcoes.add(funcao);
 	}
 	
+	public void elimiaFuncoes(Funcao funcao) {
+		this.funcoes.remove(funcao);
+		System.out.println("passadina");
+	}
 }

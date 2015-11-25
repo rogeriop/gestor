@@ -14,6 +14,7 @@ import br.com.arptec.gestor.modelo.Grupo;
 @ViewScoped
 public class GrupoBean {
 	private Grupo grupo = new Grupo();
+	private Funcao funcao = new Funcao();
 	private Long id_grupo;
 	private Long id_funcao;
 
@@ -44,6 +45,11 @@ public class GrupoBean {
 
 	}
 
+	public void setEliminaFuncao(Funcao funcao) {
+//		this.funcao = new DAO<Funcao>(Funcao.class).buscaPorId(funcao.getId_funcao());
+		this.grupo.elimiaFuncoes(funcao);
+	}
+	
 	public Long getId_funcao() {
 		return id_funcao;
 	}
@@ -65,7 +71,13 @@ public class GrupoBean {
 		}
 		this.grupo = new Grupo();
 	}
-
+	
+	public void excluir() {
+		this.grupo = new DAO<Grupo>(Grupo.class).buscaPorId(grupo.getId_grupo());
+		new DAO<Grupo>(Grupo.class).remove(this.grupo);
+		this.grupo = new Grupo();
+	}
+	
 	public void setGrupoTabela(Grupo grupo) {
 		this.grupo = new DAO<Grupo>(Grupo.class).buscaPorId(grupo.getId_grupo());
 	}

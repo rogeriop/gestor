@@ -26,36 +26,48 @@
 					<h:commandButton value="Adiciona Função"
 						action="#{grupoBean.adicionaFuncao}">
 						<f:ajax execute="funcao" render="funcoesGrupo" />
+					</h:commandButton>						
 
-					</h:commandButton>
 					<h:dataTable value="#{grupoBean.funcoesDoGrupo}" var="funcao"
 						id="funcoesGrupo">
 						<h:column>
+							<f:facet name="header">Nome</f:facet>
 							<h:outputText value="#{funcao.nome}" />
 						</h:column>
-
+						<h:column>
+							<f:facet name="header">Ação</f:facet>
+							<h:commandButton value="Elimina">
+								<f:setPropertyActionListener target="#{grupoBean.eliminaFuncao}" value="#{funcao}" />
+							</h:commandButton>
+						</h:column>
 					</h:dataTable>
-					<h:commandButton value="Gravar Grupo" action="#{grupoBean.gravar}" />
+
+					<h:commandButton value="Salvar Grupo" action="#{grupoBean.gravar}" />
+					<h:commandButton value="Excluir Grupo" action="#{grupoBean.excluir}" />
 				</h:panelGrid>
 			</fieldset>
 			<fieldset>
 				<legend>Grupos Cadastrados</legend>
+
 				<h:dataTable value="#{grupoBean.grupos}" var="grupo"
 					id="todosOsGrupos">
+						<h:column>
+							<f:facet name="header">Id</f:facet>
+							<h:outputText value="#{grupo.id_grupo}" />
+						</h:column>
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						<h:outputText value="#{grupo.nome}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">Ações</f:facet>
+						<f:facet name="header">Ação</f:facet>
 						<h:commandButton value="Editar">
 							<f:setPropertyActionListener target="#{grupoBean.grupoTabela}"
 								value="#{grupo}" />
 						</h:commandButton>
-
-						<h:commandButton value="Excluir" />
 					</h:column>
 				</h:dataTable>
+
 			</fieldset>
 		</h:form>
 	</ui:define>
